@@ -67,4 +67,15 @@
     return self.webViewController.delegate;
 }
 
+#pragma mark - fix
+
+-(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
+	//http://stackoverflow.com/questions/25942676/ios-8-sdk-modal-uiwebview-and-camera-image-picker
+	//fix user open image picker from modal view, dismiss called twice.
+	if ( self.presentedViewController)
+	{
+		[super dismissViewControllerAnimated:flag completion:completion];
+	}
+}
+
 @end
